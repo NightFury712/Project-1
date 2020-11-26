@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
     <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/bootstrap.min.js"></script>
 </head>
 <body>
     <ul>
         <% data.forEach(function(item) { %>
-            <div class="quiz-section-title">
+            <div class="quiz-section-title container p-3 my-3 border">
                 <li id="quiz-content" class="question-<%= item.QuestionNum %>"><%= item.QuestionNum %>. <%= item.Question %> </li>
             </div>
-            <div class="quiz-section-content">
+            <div class="quiz-section-content container p-3 my-3 border">
                 <ul>
                     <li class="list-item"> 
                         <label class="overlabel">
-                            <input type="radio" class="hide" name="radios-<%= item.QuestionNum %>" id="<%= item.QuestionNum %>-1" value="1">
-                            <span class="mark"></span>
+                            <input type="radio" id="hide" name="radios-<%= item.QuestionNum %>" class="<%= item.QuestionNum %>-1" value="1">
                         </label>
                         <div class="box-check">
                             <div class="answer-desc text-view"></div>
@@ -27,8 +28,7 @@
                     </li>
                     <li class="list-item">
                         <label class="overlabel">
-                            <input type="radio" class="hide" name="radios-<%= item.QuestionNum %>" id="<%= item.QuestionNum %>-2" value="2">
-                            <span class="mark"></span>
+                            <input type="radio" id="hide" name="radios-<%= item.QuestionNum %>" class="<%= item.QuestionNum %>-2" value="2">
                         </label> 
                         <div class="box-check">
                             <div class="answer-desc text-view"></div>
@@ -36,8 +36,7 @@
                     </li>
                     <li class="list-item">
                         <label class="overlabel">
-                            <input type="radio" class="hide" name="radios-<%= item.QuestionNum %>" id="<%= item.QuestionNum %>-3" value="3">
-                            <span class="mark"></span>
+                            <input type="radio" id="hide" name="radios-<%= item.QuestionNum %>" class="<%= item.QuestionNum %>-3" value="3">
                         </label>
                         <div class="box-check">
                             <div class="answer-desc text-view"></div>
@@ -45,25 +44,25 @@
                     </li>
                     <li class="list-item">
                         <label class="overlabel">
-                            <input type="radio" class="hide" name="radios-<%= item.QuestionNum %>" id="<%= item.QuestionNum %>-4" value="4">
-                            <span class="mark"></span>
+                            <input type="radio" id="hide" name="radios-<%= item.QuestionNum %>" class="<%= item.QuestionNum %>-4" value="4">
                         </label>
                         <div class="box-check">
                             <div class="answer-desc text-view"></div>
                             <p class="answer-<%= item.QuestionNum %>-4"><%= item.Answer4 %></p>
                     </li>
                     <label for="name">
-                        <input type="radio" name="answer-<%= item.QuestionNum %>" class="hidden" checked="on" value="<%= item.Result %>">
+                        <input type="radio" name="answer-<%= item.QuestionNum %>" id="hidden" checked="on" value="<%= item.Result %>">
                     </label>
                 </ul>
             </div>
         <% }) %>
     </ul> 
-    <button class="hidden" id="previousTest2">Previous</button>
-    <button class="hidden" id="previousTest3">Previous</button>
-    <button id="displayTest2">Next</button>
-    <button class="hidden" id="displayTest3">Next</button>
-    <button class="hidden" id="submit">Submit</button>
+    <button id="hidden" class="previousTest2">Previous</button>
+    <button id="hidden" class="previousTest3">Previous</button>
+    <button class="displayTest2">Next</button>
+    <button id="hidden" class="displayTest3">Next</button>
+    <button id="hidden" class="submit">Submit</button>
+    <button id="hidden" class="evaluate">Evaluate</button>
     <script type="text/javascript" src="/javascript/index.js"></script>
 </body>
 </html>

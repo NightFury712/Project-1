@@ -84,6 +84,16 @@ app.get("/getdata3", function(req, res) {
     });
 });
 
+app.get("/getResult", function(req, res) {
+    connection.query("select Result from test1", function(err, results, fields) {
+        if(!err) {
+            res.json(results)
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 app.get("/test",(req, res) => {
     res.render("test")
 })
