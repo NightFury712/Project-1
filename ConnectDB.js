@@ -1,5 +1,7 @@
 var express = require('express');
+var bodyParser = require("body-parser");
 var app = express();
+
 var mysql = require('mysql');
 var store;
 
@@ -9,7 +11,8 @@ app.listen(3000, () => {
 })
 
 //su dung cac file tinh nhu css/js/img
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended: false}));
 
 //cau hinh file ejs
 app.set("view engine", "ejs");
@@ -43,6 +46,17 @@ var closeDB = function() {
 }
 
 //truy van du lieu va hien thi ra trang web
+app.get("/home", function(req, res) {
+    connect();
+    connection.query("select * from test1 limit 1", function(err, results, fields) {
+        if(!err) {
+            res.render("home", {data: results})
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 app.get("/test1", function(req, res) {
     connect();
     connection.query("select * from test1 limit 10", function(err, results, fields) {
@@ -65,7 +79,7 @@ app.get("/getdata1", function(req, res) {
 });
 
 app.get("/getdata2", function(req, res) {
-    connection.query("select * from test1 limit 10 offset 10", function(err, results, fields) {
+    connection.query("select * from test1", function(err, results, fields) {
         if(!err) {
             res.json(results)
         } else {
@@ -94,6 +108,16 @@ app.get("/getResult", function(req, res) {
     });
 });
 
-app.get("/test",(req, res) => {
-    res.render("test")
+app.get("/test", (req, res) => {
+    res.render("test.ejs");
+})
+
+app.post("/postTime", (req, res) => {
+    var date = req.body.date;
+    console.log("insert into timestart(time) values " + "'" + date + "'");
+    connection.query("insert into timestart(time) values " + "('" + date + "')", (err, results, fields) => {
+        if(err) {
+            console.log(err);
+        }
+    });
 })
